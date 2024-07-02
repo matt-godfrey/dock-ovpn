@@ -19,7 +19,21 @@ if ["$actual" == "$expected"]; then
     echo "IP forwarding has been enabled correctly"
 else
     echo "IP forwarding has not been set correctly"
-fi 
+fi
+
+# firewall settings
+
+sudo cp ./host-config/ufw /etc/default/ufw
+sudo cp ./host-config/before.rules /etc/ufw/before.rules
+
+sudo ufw allow ssh
+sudo ufw allow 1194/udp
+
+sudo ufw reload
+
+# need to actually start ufw somehow
+# sudo ufw enable (requires hitting enter key)
+
 
 
 
